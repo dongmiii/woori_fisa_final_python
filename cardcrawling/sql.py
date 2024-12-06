@@ -13,12 +13,10 @@ db_user = os.getenv('DB_USER')
 db_password = os.getenv('DB_PASSWORD')
 db_host = os.getenv('DB_HOST')
 db_port = os.getenv('DB_PORT')
-
 engine = create_engine(f'mysql+pymysql://{db_user}:{db_password}@{db_host}:{db_port}/aiteam2')
 
 # CSV 파일 경로
-credit_file_path = 'cardcrawling/creditcard.csv'
-check_file_path = 'cardcrawling/checkcard.csv'
+file_path = 'card.csv'
 
 def load_and_insert_to_db(csv_path, table_name, engine):
     # CSV 파일 읽기
@@ -32,8 +30,5 @@ def load_and_insert_to_db(csv_path, table_name, engine):
     except Exception as e:
         print(f"An error occurred while inserting into {table_name}: {e}")
 
-# creditcard 테이블로 데이터 삽입
-load_and_insert_to_db(credit_file_path, 'creditcard', engine)
-
-# checkcard 테이블로 데이터 삽입
-load_and_insert_to_db(check_file_path, 'checkcard', engine)
+# card 테이블로 데이터 삽입
+load_and_insert_to_db(file_path, 'card', engine)
